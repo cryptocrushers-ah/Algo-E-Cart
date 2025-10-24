@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # AlgoMart - Decentralized Marketplace with Secure Escrow
 
 A modern, peer-to-peer marketplace built on the Algorand blockchain featuring secure smart contract escrow protection for all transactions.
@@ -204,3 +205,9 @@ For issues or questions:
 ---
 
 Built with ❤️ using Next.js, Algorand, and Shadcn/UI
+=======
+# Algo-E-Cart
+
+Abstract :
+The Blockchain Integrated E-Cart is envisioned as an e-commerce platform that enables users to purchase goods and services directly with multiple cryptocurrencies. While digital assets are increasingly adopted worldwide, a gap remains in their practical use for everyday transactions. This concept addresses that gap by providing a secure, transparent, and globally accessible marketplace powered by blockchain. Core features include multi-currency support, stablecoin integration to minimize volatility, and smart contract–based escrow to ensure buyer and seller trust. Challenges such as regulatory compliance, adoption barriers, and technical complexity are acknowledged and addressed through careful design. Beginning with niche sectors like digital goods or gaming, the platform can build adoption before scaling to broader markets, positioning itself as a leader in crypto-driven commerce.
+>>>>>>> 58c7381d21371227a98c09aa50b930a60aa7dc3c
