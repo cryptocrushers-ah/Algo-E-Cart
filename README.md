@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-# AlgoMart - Decentralized Marketplace with Secure Escrow
+# Algo-E-Cart - Decentralized Marketplace with Secure Escrow
 
 A modern, peer-to-peer marketplace built on the Algorand blockchain featuring secure smart contract escrow protection for all transactions.
 
