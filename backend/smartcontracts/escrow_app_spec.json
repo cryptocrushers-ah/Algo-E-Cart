@@ -1,0 +1,46 @@
+{
+  "name": "AlgoECartEscrow",
+  "description": "Secure escrow contract for Algo-E-Cart marketplace",
+  "networks": {
+    "testnet": {
+      "appID": 749436186
+    }
+  },
+  "source": {
+    "approval": "#pragma version 7\ntxn ApplicationID\nint 0\n==\nbnz main_l4\ntxna ApplicationArgs 0\nbyte \"release\"\n==\nbnz main_l3\nerr\nmain_l3:\ntxn Sender\nbyte \"admin\"\napp_global_get\n==\nassert\nitxn_begin\nint pay\nitxn_field TypeEnum\nbyte \"seller\"\napp_global_get\nitxn_field Receiver\nbyte \"amount\"\napp_global_get\nitxn_field Amount\nint 0\nitxn_field Fee\nitxn_submit\nint 1\nreturn\nmain_l4:\ntxn NumAppArgs\nint 3\n==\nassert\nbyte \"admin\"\ntxn Sender\napp_global_put\nbyte \"seller\"\ntxna ApplicationArgs 1\napp_global_put\nbyte \"amount\"\ntxna ApplicationArgs 2\nbtoi\napp_global_put\nint 1\nreturn",
+    "clear": "#pragma version 7\nint 1\nreturn"
+  },
+  "schema": {
+    "local": {
+      "declared": {
+        "ints": 0,
+        "bytes": 0
+      }
+    },
+    "global": {
+      "declared": {
+        "ints": 1,
+        "bytes": 2
+      }
+    }
+  },
+  "hints": {},
+  "methods": [
+    {
+      "name": "release",
+      "desc": "Release escrow funds to seller (admin only)",
+      "args": [],
+      "returns": {
+        "type": "void"
+      },
+      "readonly": false
+    }
+  ],
+  "bare_call_config": {
+    "no_op": "CREATE",
+    "update_application": "NEVER",
+    "delete_application": "NEVER",
+    "opt_in": "NEVER",
+    "close_out": "NEVER"
+  }
+}
