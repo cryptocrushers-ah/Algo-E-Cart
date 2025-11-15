@@ -61,7 +61,7 @@ pip install -r requirements.txt
 Create .env:
 ADMIN_SECRET_KEY=your_admin_secret
 ADMIN_LOGIN_TOKEN=your_jwt_secret
-ALGOD_URL=https://testnet-api.lora.network
+ALGOD_URL= https://testnet-api.algonode.cloud
 APP_OPERATOR_KEY=your_private_key_here
 
 Run backend:
