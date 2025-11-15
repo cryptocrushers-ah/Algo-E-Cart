@@ -1,0 +1,155 @@
+#pragma version 7
+txn ApplicationID
+int 0
+==
+bnz main_l14
+txn OnCompletion
+int DeleteApplication
+==
+bnz main_l13
+txn OnCompletion
+int NoOp
+==
+bnz main_l4
+err
+main_l4:
+txna ApplicationArgs 0
+byte "fund"
+==
+bnz main_l12
+txna ApplicationArgs 0
+byte "deliver"
+==
+bnz main_l11
+txna ApplicationArgs 0
+byte "confirm"
+==
+bnz main_l10
+txna ApplicationArgs 0
+byte "release"
+==
+bnz main_l9
+err
+main_l9:
+txn Sender
+byte "admin"
+app_global_get
+==
+assert
+byte "seller"
+app_global_get
+byte "amount"
+app_global_get
+callsub doinnerpayment_0
+byte "status"
+int 3
+app_global_put
+int 1
+return
+main_l10:
+txn Sender
+byte "buyer"
+app_global_get
+==
+assert
+byte "status"
+app_global_get
+int 2
+==
+assert
+byte "seller"
+app_global_get
+byte "amount"
+app_global_get
+callsub doinnerpayment_0
+byte "status"
+int 3
+app_global_put
+int 1
+return
+main_l11:
+txn Sender
+byte "seller"
+app_global_get
+==
+assert
+byte "status"
+app_global_get
+int 1
+==
+assert
+byte "status"
+int 2
+app_global_put
+int 1
+return
+main_l12:
+global GroupSize
+int 2
+>=
+assert
+gtxn 0 TypeEnum
+int pay
+==
+assert
+gtxn 0 Receiver
+global CurrentApplicationAddress
+==
+assert
+gtxn 0 Amount
+byte "amount"
+app_global_get
+==
+assert
+byte "buyer"
+gtxn 0 Sender
+app_global_put
+byte "status"
+int 1
+app_global_put
+int 1
+return
+main_l13:
+txn Sender
+byte "admin"
+app_global_get
+==
+assert
+int 1
+return
+main_l14:
+txn NumAppArgs
+int 3
+==
+assert
+byte "admin"
+txna ApplicationArgs 0
+app_global_put
+byte "seller"
+txna ApplicationArgs 1
+app_global_put
+byte "amount"
+txna ApplicationArgs 2
+btoi
+app_global_put
+byte "status"
+int 0
+app_global_put
+int 1
+return
+
+// do_inner_payment
+doinnerpayment_0:
+store 1
+store 0
+itxn_begin
+int pay
+itxn_field TypeEnum
+load 0
+itxn_field Receiver
+load 1
+itxn_field Amount
+int 0
+itxn_field Fee
+itxn_submit
+retsub
